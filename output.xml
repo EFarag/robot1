@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generated="20160906 16:40:11.085" generator="Robot 3.0 (Python 2.7 on win32)">
+<suite source="C:\Users\efarrag\Desktop\robot1\login_tests" id="s1" name="Login Tests">
+<suite source="C:\Users\efarrag\Desktop\robot1\login_tests\copy_to_VM.robot" id="s1-s1" name="copy to VM">
+<kw type="setup" name="Open Connection And Log In">
+<kw name="Open Pysphere Connection" library="PysphereLibrary">
+<doc>Opens a pysphere connection to the given `host`</doc>
+<arguments>
+<arg>${PyHOST}</arg>
+<arg>${PyUSERNAME}</arg>
+<arg>${PyPASSWORD}</arg>
+</arguments>
+<msg timestamp="20160906 16:40:13.499" level="INFO">Pysphere connection opened to host ESX02.STA.COM</msg>
+<status status="PASS" endtime="20160906 16:40:13.499" starttime="20160906 16:40:11.829"></status>
+</kw>
+<status status="PASS" endtime="20160906 16:40:13.499" starttime="20160906 16:40:11.829"></status>
+</kw>
+<test id="s1-s1-t1" name="Copying">
+<kw name="Copy File">
+<kw name="Vm Login In Guest" library="PysphereLibrary">
+<doc>Logs into the named VM with the specified `username` and `password`.</doc>
+<arguments>
+<arg>${HOST}</arg>
+<arg>${USERNAME}</arg>
+<arg>${PASSWORD}</arg>
+</arguments>
+<msg timestamp="20160906 16:40:14.395" level="INFO">Logged into VM Win 8.1 Pro x64 - VM4.</msg>
+<status status="PASS" endtime="20160906 16:40:14.395" starttime="20160906 16:40:13.500"></status>
+</kw>
+<kw name="Vm Send File" library="PysphereLibrary">
+<doc>Uploads a file from `local_path` to the specified `remote_path` on</doc>
+<arguments>
+<arg>${HOST}</arg>
+<arg>${SOURCE}</arg>
+<arg>${DESTINATION}</arg>
+</arguments>
+<msg timestamp="20160906 16:40:14.396" level="INFO">Uploading file C:\Users\efarrag\Desktop\robot1\TestTest.txt to C:Robot on VM Win 8.1 Pro x64 - VM4.</msg>
+<msg timestamp="20160906 16:40:15.173" level="FAIL">VIException: [Invalid Operation]: You must call first login_in_guest</msg>
+<status status="FAIL" endtime="20160906 16:40:15.173" starttime="20160906 16:40:14.396"></status>
+</kw>
+<status status="FAIL" endtime="20160906 16:40:15.174" starttime="20160906 16:40:13.500"></status>
+</kw>
+<status status="FAIL" endtime="20160906 16:40:15.174" critical="yes" starttime="20160906 16:40:13.499">VIException: [Invalid Operation]: You must call first login_in_guest</status>
+</test>
+<kw type="teardown" name="Close Pysphere Connection" library="PysphereLibrary">
+<doc>Closes the current pysphere connection.</doc>
+<msg timestamp="20160906 16:40:15.301" level="INFO">Connection closed, there will no longer be a current pysphere connection.</msg>
+<status status="PASS" endtime="20160906 16:40:15.302" starttime="20160906 16:40:15.175"></status>
+</kw>
+<doc>This example demonstrates executing commands on a remote machine
+and getting their output and the return code.
+
+Notice how connections are handled as part of the suite setup and
+teardown. This saves some time when executing several test cases.</doc>
+<status status="FAIL" endtime="20160906 16:40:15.302" starttime="20160906 16:40:11.151"></status>
+</suite>
+<suite source="C:\Users\efarrag\Desktop\robot1\login_tests\valid_login.robot" id="s1-s2" name="Valid Login">
+<test id="s1-s2-t1" name="Valid Login">
+<kw name="Open Browser To Login Page" library="resource">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to given URL.</doc>
+<arguments>
+<arg>${LOGIN URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20160906 16:40:15.319" level="INFO">Opening browser 'firefox' to base url 'http://10.1.23.114/bookstore//Login.aspx'</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into the log.</doc>
+<msg timestamp="20160906 16:41:47.796" level="FAIL">No browser is open</msg>
+<status status="FAIL" endtime="20160906 16:41:47.796" starttime="20160906 16:41:47.753"></status>
+</kw>
+<msg timestamp="20160906 16:41:47.796" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20160906 16:41:47.828" level="FAIL">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmpvdzzdy\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
+</msg>
+<status status="FAIL" endtime="20160906 16:41:47.828" starttime="20160906 16:40:15.318"></status>
+</kw>
+<status status="FAIL" endtime="20160906 16:41:47.829" starttime="20160906 16:40:15.318"></status>
+</kw>
+<status status="FAIL" endtime="20160906 16:41:47.829" critical="yes" starttime="20160906 16:40:15.317">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmpvdzzdy\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
+</status>
+</test>
+<doc>A test suite with a single test for valid login. This test has
+a workflow that is created using keywords from the resource file.</doc>
+<status status="FAIL" endtime="20160906 16:41:47.829" starttime="20160906 16:40:15.306"></status>
+</suite>
+<status status="FAIL" endtime="20160906 16:41:47.831" starttime="20160906 16:40:11.093"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="2" pass="0">Critical Tests</stat>
+<stat fail="2" pass="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="2" id="s1" name="Login Tests" pass="0">Login Tests</stat>
+<stat fail="1" id="s1-s1" name="copy to VM" pass="0">Login Tests.copy to VM</stat>
+<stat fail="1" id="s1-s2" name="Valid Login" pass="0">Login Tests.Valid Login</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20160906 16:41:47.796" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+</errors>
+</robot>
