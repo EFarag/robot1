@@ -1,58 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generated="20160906 16:40:11.085" generator="Robot 3.0 (Python 2.7 on win32)">
+<robot generated="20160908 15:45:16.865" generator="Robot 3.0 (Python 2.7 on win32)">
 <suite source="C:\Users\efarrag\Desktop\robot1\login_tests" id="s1" name="Login Tests">
 <suite source="C:\Users\efarrag\Desktop\robot1\login_tests\copy_to_VM.robot" id="s1-s1" name="copy to VM">
 <kw type="setup" name="Open Connection And Log In">
-<kw name="Open Pysphere Connection" library="PysphereLibrary">
-<doc>Opens a pysphere connection to the given `host`</doc>
-<arguments>
-<arg>${PyHOST}</arg>
-<arg>${PyUSERNAME}</arg>
-<arg>${PyPASSWORD}</arg>
-</arguments>
-<msg timestamp="20160906 16:40:13.499" level="INFO">Pysphere connection opened to host ESX02.STA.COM</msg>
-<status status="PASS" endtime="20160906 16:40:13.499" starttime="20160906 16:40:11.829"></status>
-</kw>
-<status status="PASS" endtime="20160906 16:40:13.499" starttime="20160906 16:40:11.829"></status>
-</kw>
-<test id="s1-s1-t1" name="Copying">
-<kw name="Copy File">
-<kw name="Vm Login In Guest" library="PysphereLibrary">
-<doc>Logs into the named VM with the specified `username` and `password`.</doc>
+<kw name="Open Connection" library="SSHLibrary">
+<doc>Opens a new SSH connection to the given `host` and `port`.</doc>
 <arguments>
 <arg>${HOST}</arg>
+<arg>port=22</arg>
+</arguments>
+<status status="PASS" endtime="20160908 15:45:17.197" starttime="20160908 15:45:17.197"></status>
+</kw>
+<kw name="Login" library="SSHLibrary">
+<doc>Logs into the SSH server with the given `username` and `password`.</doc>
+<arguments>
 <arg>${USERNAME}</arg>
 <arg>${PASSWORD}</arg>
 </arguments>
-<msg timestamp="20160906 16:40:14.395" level="INFO">Logged into VM Win 8.1 Pro x64 - VM4.</msg>
-<status status="PASS" endtime="20160906 16:40:14.395" starttime="20160906 16:40:13.500"></status>
+<msg timestamp="20160908 15:45:17.198" level="INFO">Logging into '10.1.23.114:22' as 'admin'.</msg>
+<msg timestamp="20160908 15:45:18.978" level="INFO">Read output: Last login: Thu Sep  8 16:33:01 2016 from 10.1.23.131
+]0;~
+[32madmin@Win7pro-64-PK1 [33m~[0m
+$</msg>
+<status status="PASS" endtime="20160908 15:45:18.978" starttime="20160908 15:45:17.197"></status>
 </kw>
-<kw name="Vm Send File" library="PysphereLibrary">
-<doc>Uploads a file from `local_path` to the specified `remote_path` on</doc>
+<status status="PASS" endtime="20160908 15:45:18.978" starttime="20160908 15:45:17.197"></status>
+</kw>
+<test id="s1-s1-t1" name="Ex">
+<kw name="Copy File">
+<kw name="Put Directory" library="SSHLibrary">
+<doc>Uploads a directory, including its content, from the local machine to the remote machine.</doc>
 <arguments>
-<arg>${HOST}</arg>
 <arg>${SOURCE}</arg>
 <arg>${DESTINATION}</arg>
+<arg>recursive=True</arg>
 </arguments>
-<msg timestamp="20160906 16:40:14.396" level="INFO">Uploading file C:\Users\efarrag\Desktop\robot1\TestTest.txt to C:Robot on VM Win 8.1 Pro x64 - VM4.</msg>
-<msg timestamp="20160906 16:40:15.173" level="FAIL">VIException: [Invalid Operation]: You must call first login_in_guest</msg>
-<status status="FAIL" endtime="20160906 16:40:15.173" starttime="20160906 16:40:14.396"></status>
+<msg timestamp="20160908 15:45:19.130" level="INFO">[chan 1] Opened sftp connection (server version 3)</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\COMMIT_EDITMSG' -&gt; '/robot2/.git/COMMIT_EDITMSG'</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\config' -&gt; '/robot2/.git/config'</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\description' -&gt; '/robot2/.git/description'</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\FETCH_HEAD' -&gt; '/robot2/.git/FETCH_HEAD'</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\HEAD' -&gt; '/robot2/.git/HEAD'</msg>
+<msg timestamp="20160908 15:45:48.268" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\applypatch-msg.sample' -&gt; '/robot2/.git/hooks/applypatch-msg.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\commit-msg.sample' -&gt; '/robot2/.git/hooks/commit-msg.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\post-update.sample' -&gt; '/robot2/.git/hooks/post-update.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\pre-applypatch.sample' -&gt; '/robot2/.git/hooks/pre-applypatch.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\pre-commit.sample' -&gt; '/robot2/.git/hooks/pre-commit.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\pre-push.sample' -&gt; '/robot2/.git/hooks/pre-push.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\pre-rebase.sample' -&gt; '/robot2/.git/hooks/pre-rebase.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\prepare-commit-msg.sample' -&gt; '/robot2/.git/hooks/prepare-commit-msg.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\hooks\update.sample' -&gt; '/robot2/.git/hooks/update.sample'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\index' -&gt; '/robot2/.git/index'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\info\exclude' -&gt; '/robot2/.git/info/exclude'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\logs\HEAD' -&gt; '/robot2/.git/logs/HEAD'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\logs\refs\heads\master' -&gt; '/robot2/.git/logs/refs/heads/master'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\logs\refs\remotes\origin\master' -&gt; '/robot2/.git/logs/refs/remotes/origin/master'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\06\d010f069490b07a74e62ee284712b5b9653a2a' -&gt; '/robot2/.git/objects/06/d010f069490b07a74e62ee284712b5b9653a2a'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\09\bc066e5cfb5d5d8b94f8946e189af5de239605' -&gt; '/robot2/.git/objects/09/bc066e5cfb5d5d8b94f8946e189af5de239605'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\0b\849879d24d006a554fb75d8485bc07df67ab7e' -&gt; '/robot2/.git/objects/0b/849879d24d006a554fb75d8485bc07df67ab7e'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\32\3b8375436371cd4c9d25a5247dfcecf0c08e69' -&gt; '/robot2/.git/objects/32/3b8375436371cd4c9d25a5247dfcecf0c08e69'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\3b\1674d0ae043e8aaf7a21827938c85b9ec3d575' -&gt; '/robot2/.git/objects/3b/1674d0ae043e8aaf7a21827938c85b9ec3d575'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\3c\ce659217b268145c9aa14a72bdd3d4a0cb3299' -&gt; '/robot2/.git/objects/3c/ce659217b268145c9aa14a72bdd3d4a0cb3299'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\42\c1ff38b671eb4dca8db54afcd98b73d067c228' -&gt; '/robot2/.git/objects/42/c1ff38b671eb4dca8db54afcd98b73d067c228'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\4b\2a8ad6740b8f19e8e06243b41c59ab4045f87c' -&gt; '/robot2/.git/objects/4b/2a8ad6740b8f19e8e06243b41c59ab4045f87c'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\50\bc88ae7531d388031680ffa5bb4e204807bee5' -&gt; '/robot2/.git/objects/50/bc88ae7531d388031680ffa5bb4e204807bee5'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\59\5be4ca18010714ad55ee80cd8cda6e45ab2c26' -&gt; '/robot2/.git/objects/59/5be4ca18010714ad55ee80cd8cda6e45ab2c26'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\5e\bcbb9a06f49c0b0679a94f98554e600fac244a' -&gt; '/robot2/.git/objects/5e/bcbb9a06f49c0b0679a94f98554e600fac244a'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\67\11606311e2664bd835f92b5c114681d2e284f5' -&gt; '/robot2/.git/objects/67/11606311e2664bd835f92b5c114681d2e284f5'</msg>
+<msg timestamp="20160908 15:45:48.269" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\79\54fd00e5144ca575a443233efa9100b29a7f09' -&gt; '/robot2/.git/objects/79/54fd00e5144ca575a443233efa9100b29a7f09'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\79\9a53679738ed86be141a5a4d6147156abf6bd2' -&gt; '/robot2/.git/objects/79/9a53679738ed86be141a5a4d6147156abf6bd2'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\8c\71a858453276b627c6f632f7280dbc9289c098' -&gt; '/robot2/.git/objects/8c/71a858453276b627c6f632f7280dbc9289c098'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\94\a25f7f4cb416c083d265558da75d457237d671' -&gt; '/robot2/.git/objects/94/a25f7f4cb416c083d265558da75d457237d671'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\95\f1a410818553b643b88833a221668d8d86838f' -&gt; '/robot2/.git/objects/95/f1a410818553b643b88833a221668d8d86838f'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\97\626ba45445dc9f3afa66e6a149914dc39e3df6' -&gt; '/robot2/.git/objects/97/626ba45445dc9f3afa66e6a149914dc39e3df6'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\99\01744e9890ef0cbce87ba52c327e103a9d2f15' -&gt; '/robot2/.git/objects/99/01744e9890ef0cbce87ba52c327e103a9d2f15'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\a1\83626742cf91facc2aebac4b10f9494928db54' -&gt; '/robot2/.git/objects/a1/83626742cf91facc2aebac4b10f9494928db54'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\a8\5d7f951781205fc361e2279ac9f8ca0c7746fc' -&gt; '/robot2/.git/objects/a8/5d7f951781205fc361e2279ac9f8ca0c7746fc'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\a8\92fab0b58025a2c97036e48be15a4605f7c27d' -&gt; '/robot2/.git/objects/a8/92fab0b58025a2c97036e48be15a4605f7c27d'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\a9\0dba8ad0f03dad97049aedddae3c3207e41e4b' -&gt; '/robot2/.git/objects/a9/0dba8ad0f03dad97049aedddae3c3207e41e4b'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\aa\3f52784d92adc7c54333c6975940ba451fe75c' -&gt; '/robot2/.git/objects/aa/3f52784d92adc7c54333c6975940ba451fe75c'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\bf\c8b73cfe55fde336654633f4fce81df851bf98' -&gt; '/robot2/.git/objects/bf/c8b73cfe55fde336654633f4fce81df851bf98'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\d1\048c2ac2404baf818d81969f1f66d927a8d8ea' -&gt; '/robot2/.git/objects/d1/048c2ac2404baf818d81969f1f66d927a8d8ea'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\e4\f69cfcf21dc7cc28bdcc66eebd1f1fa23b8d7a' -&gt; '/robot2/.git/objects/e4/f69cfcf21dc7cc28bdcc66eebd1f1fa23b8d7a'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\e6\9de29bb2d1d6434b8b29ae775ad8c2e48c5391' -&gt; '/robot2/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\info' -&gt; '\robot2/.git/objects/info'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\objects\pack' -&gt; '\robot2/.git/objects/pack'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\refs\heads\master' -&gt; '/robot2/.git/refs/heads/master'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\refs\remotes\origin\master' -&gt; '/robot2/.git/refs/remotes/origin/master'</msg>
+<msg timestamp="20160908 15:45:48.270" level="INFO">'C:\Users\efarrag\Desktop\robot1\.git\refs\tags' -&gt; '\robot2/.git/refs/tags'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\.name' -&gt; '/robot2/.idea/.name'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\encodings.xml' -&gt; '/robot2/.idea/encodings.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\misc.xml' -&gt; '/robot2/.idea/misc.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\modules.xml' -&gt; '/robot2/.idea/modules.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\robot1.iml' -&gt; '/robot2/.idea/robot1.iml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\vcs.xml' -&gt; '/robot2/.idea/vcs.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\.idea\workspace.xml' -&gt; '/robot2/.idea/workspace.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\log.html' -&gt; '/robot2/log.html'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\copy_to_VM.robot' -&gt; '/robot2/login_tests/copy_to_VM.robot'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\log.html' -&gt; '/robot2/login_tests/log.html'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\myimage.jpg' -&gt; '/robot2/login_tests/myimage.jpg'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\output.xml' -&gt; '/robot2/login_tests/output.xml'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\report.html' -&gt; '/robot2/login_tests/report.html'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\resource.robot' -&gt; '/robot2/login_tests/resource.robot'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\ScreenCapture.py' -&gt; '/robot2/login_tests/ScreenCapture.py'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\ScreenCapture.pyc' -&gt; '/robot2/login_tests/ScreenCapture.pyc'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\Test.txt' -&gt; '/robot2/login_tests/Test.txt'</msg>
+<msg timestamp="20160908 15:45:48.271" level="INFO">'C:\Users\efarrag\Desktop\robot1\login_tests\valid_login.robot' -&gt; '/robot2/login_tests/valid_login.robot'</msg>
+<msg timestamp="20160908 15:45:48.272" level="INFO">'C:\Users\efarrag\Desktop\robot1\myimage.jpg' -&gt; '/robot2/myimage.jpg'</msg>
+<msg timestamp="20160908 15:45:48.272" level="INFO">'C:\Users\efarrag\Desktop\robot1\output.xml' -&gt; '/robot2/output.xml'</msg>
+<msg timestamp="20160908 15:45:48.272" level="INFO">'C:\Users\efarrag\Desktop\robot1\report.html' -&gt; '/robot2/report.html'</msg>
+<status status="PASS" endtime="20160908 15:45:48.272" starttime="20160908 15:45:18.979"></status>
 </kw>
-<status status="FAIL" endtime="20160906 16:40:15.174" starttime="20160906 16:40:13.500"></status>
+<status status="PASS" endtime="20160908 15:45:48.272" starttime="20160908 15:45:18.979"></status>
 </kw>
-<status status="FAIL" endtime="20160906 16:40:15.174" critical="yes" starttime="20160906 16:40:13.499">VIException: [Invalid Operation]: You must call first login_in_guest</status>
+<kw name="Start Service">
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>cd\\${appAddr}\\${appName}</arg>
+</arguments>
+<assign>
+<var>${cmd}</var>
+</assign>
+<msg timestamp="20160908 15:45:48.273" level="INFO">${cmd} = cd\cygwin64\robot2\report.html</msg>
+<status status="PASS" endtime="20160908 15:45:48.273" starttime="20160908 15:45:48.273"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>Going to run command: ${cmd}</arg>
+</arguments>
+<status status="PASS" endtime="20160908 15:45:48.273" starttime="20160908 15:45:48.273"></status>
+</kw>
+<kw name="Execute Command" library="SSHLibrary">
+<doc>Executes `command` on the remote machine and returns its outputs.</doc>
+<arguments>
+<arg>${cmd}</arg>
+</arguments>
+<msg timestamp="20160908 15:45:48.274" level="INFO">Executing command 'cd\cygwin64\robot2\report.html'.</msg>
+<msg timestamp="20160908 15:45:48.411" level="INFO">Command exited with return code 127.</msg>
+<status status="PASS" endtime="20160908 15:45:48.411" starttime="20160908 15:45:48.273"></status>
+</kw>
+<status status="PASS" endtime="20160908 15:45:48.411" starttime="20160908 15:45:48.272"></status>
+</kw>
+<status status="PASS" endtime="20160908 15:45:48.411" critical="yes" starttime="20160908 15:45:18.978"></status>
 </test>
-<kw type="teardown" name="Close Pysphere Connection" library="PysphereLibrary">
-<doc>Closes the current pysphere connection.</doc>
-<msg timestamp="20160906 16:40:15.301" level="INFO">Connection closed, there will no longer be a current pysphere connection.</msg>
-<status status="PASS" endtime="20160906 16:40:15.302" starttime="20160906 16:40:15.175"></status>
-</kw>
 <doc>This example demonstrates executing commands on a remote machine
 and getting their output and the return code.
 
 Notice how connections are handled as part of the suite setup and
 teardown. This saves some time when executing several test cases.</doc>
-<status status="FAIL" endtime="20160906 16:40:15.302" starttime="20160906 16:40:11.151"></status>
+<status status="PASS" endtime="20160908 15:45:48.412" starttime="20160908 15:45:16.891"></status>
 </suite>
 <suite source="C:\Users\efarrag\Desktop\robot1\login_tests\valid_login.robot" id="s1-s2" name="Valid Login">
 <test id="s1-s2-t1" name="Valid Login">
@@ -63,42 +161,42 @@ teardown. This saves some time when executing several test cases.</doc>
 <arg>${LOGIN URL}</arg>
 <arg>${BROWSER}</arg>
 </arguments>
-<msg timestamp="20160906 16:40:15.319" level="INFO">Opening browser 'firefox' to base url 'http://10.1.23.114/bookstore//Login.aspx'</msg>
+<msg timestamp="20160908 15:45:48.418" level="INFO">Opening browser 'firefox' to base url 'http://10.1.23.114/bookstore//Login.aspx'</msg>
 <kw name="Capture Page Screenshot" library="Selenium2Library">
 <doc>Takes a screenshot of the current page and embeds it into the log.</doc>
-<msg timestamp="20160906 16:41:47.796" level="FAIL">No browser is open</msg>
-<status status="FAIL" endtime="20160906 16:41:47.796" starttime="20160906 16:41:47.753"></status>
+<msg timestamp="20160908 15:47:20.781" level="FAIL">No browser is open</msg>
+<status status="FAIL" endtime="20160908 15:47:20.781" starttime="20160908 15:47:20.778"></status>
 </kw>
-<msg timestamp="20160906 16:41:47.796" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
-<msg timestamp="20160906 16:41:47.828" level="FAIL">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmpvdzzdy\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
+<msg timestamp="20160908 15:47:20.781" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20160908 15:47:20.783" level="FAIL">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmprwuca2\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
 </msg>
-<status status="FAIL" endtime="20160906 16:41:47.828" starttime="20160906 16:40:15.318"></status>
+<status status="FAIL" endtime="20160908 15:47:20.783" starttime="20160908 15:45:48.418"></status>
 </kw>
-<status status="FAIL" endtime="20160906 16:41:47.829" starttime="20160906 16:40:15.318"></status>
+<status status="FAIL" endtime="20160908 15:47:20.783" starttime="20160908 15:45:48.418"></status>
 </kw>
-<status status="FAIL" endtime="20160906 16:41:47.829" critical="yes" starttime="20160906 16:40:15.317">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmpvdzzdy\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
+<status status="FAIL" endtime="20160908 15:47:20.784" critical="yes" starttime="20160908 15:45:48.417">WebDriverException: Message: Can't load the profile. Profile Dir: c:\users\efarrag\appdata\local\temp\tmprwuca2\webdriver-py-profilecopy If you specified a log_file in the FirefoxBinary constructor, check it for details.
 </status>
 </test>
 <doc>A test suite with a single test for valid login. This test has
 a workflow that is created using keywords from the resource file.</doc>
-<status status="FAIL" endtime="20160906 16:41:47.829" starttime="20160906 16:40:15.306"></status>
+<status status="FAIL" endtime="20160908 15:47:20.784" starttime="20160908 15:45:48.413"></status>
 </suite>
-<status status="FAIL" endtime="20160906 16:41:47.831" starttime="20160906 16:40:11.093"></status>
+<status status="FAIL" endtime="20160908 15:47:20.789" starttime="20160908 15:45:16.868"></status>
 </suite>
 <statistics>
 <total>
-<stat fail="2" pass="0">Critical Tests</stat>
-<stat fail="2" pass="0">All Tests</stat>
+<stat fail="1" pass="1">Critical Tests</stat>
+<stat fail="1" pass="1">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat fail="2" id="s1" name="Login Tests" pass="0">Login Tests</stat>
-<stat fail="1" id="s1-s1" name="copy to VM" pass="0">Login Tests.copy to VM</stat>
+<stat fail="1" id="s1" name="Login Tests" pass="1">Login Tests</stat>
+<stat fail="0" id="s1-s1" name="copy to VM" pass="1">Login Tests.copy to VM</stat>
 <stat fail="1" id="s1-s2" name="Valid Login" pass="0">Login Tests.Valid Login</stat>
 </suite>
 </statistics>
 <errors>
-<msg timestamp="20160906 16:41:47.796" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
+<msg timestamp="20160908 15:47:20.781" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: No browser is open</msg>
 </errors>
 </robot>

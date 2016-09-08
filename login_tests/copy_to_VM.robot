@@ -4,38 +4,41 @@ Documentation          This example demonstrates executing commands on a remote 
 ...
 ...                    Notice how connections are handled as part of the suite setup and
 ...                    teardown. This saves some time when executing several test cases.
-
-Library                PysphereLibrary
+Library                SSHLibrary
 Resource               resource.robot
 Suite Setup            Open Connection And Log In
-Suite Teardown         Close pysphere Connection
+#Suite Teardown         Close all connections
 
 *** Variables ***
-${HOST}                Win 8.1 Pro x64 - VM4
+${HOST}                10.1.23.114
 ${USERNAME}            admin
 ${PASSWORD}            123456
-${SOURCE}              C:\Test\Test.txt
-${DESTINATION}         C:\Robot
-${PyHOST}              ESX02.STA.COM
-${PyUSERNAME}          mayman
-${PyPASSWORD}          123@sta.com
-
+${SOURCE}              C:\\Users\\efarrag\\Desktop\\robot1
+${DESTINATION}         \\robot2
+${appAddr}              cygwin64\\robot2
+${appName}              report.html
+${appInputArg}
 
 
 *** Keywords ***
 Open Connection And Log In
-    Open Pysphere Connection  ${PyHOST}  ${PyUSERNAME}  ${PyPASSWORD}
 
+   Open Connection    ${HOST}   port=22
+   Login    ${USERNAME}    ${PASSWORD}
 
 Copy File
-    vm login in guest   ${HOST}  ${USERNAME}  ${PASSWORD}
-    vm send file    ${HOST}     ${SOURCE}   ${DESTINATION}
+   put directory    ${SOURCE}        ${DESTINATION}      recursive=True
+
+Start Service
+    ${cmd} =     set variable  cd\\${appAddr}\\${appName}
+    log to console      Going to run command: ${cmd}
+    execute command     ${cmd}
+
+
+
 
 
 *** Test Cases ***
-Copying
-   Copy File
-
-
-
-
+Ex
+    Copy File
+    Start Service
